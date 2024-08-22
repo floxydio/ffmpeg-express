@@ -49,7 +49,7 @@ let streamM3 = stringGeneratorOnlyText();
 
 function startFFMpegStream(inputURL, streamName) {
     const scriptPath = path.join(__dirname, "exec.sh");
-    const ffmpeg = spawn("cmd.exe", ['/c', scriptPath, inputURL, baseOutputDir, streamName, streamM3]);
+    const ffmpeg = spawn("sh", [scriptPath, inputURL, baseOutputDir, streamName, streamM3])
 
     ffmpeg.stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
