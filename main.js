@@ -102,7 +102,7 @@ app.post("/stream", async (req, res) => {
             ]
         );
 
-        res.json({ message: `Streaming started for ${streamName}`, result });
+        res.json({ message: `Streaming started for ${streamName}` });
     } catch (e) {
         console.log(e.message);
         res.status(500).json({ message: "Error starting stream" });
