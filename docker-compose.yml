@@ -1,0 +1,9 @@
+services:
+  dev_ffmpeg:
+    build: .
+    ports:
+      - "2500:2500"
+    volumes:
+      - .:/ffmpeg-express
+      - /ffmpeg-express/node_modules
+    command: npm run dev
