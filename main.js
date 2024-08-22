@@ -90,6 +90,22 @@ app.get("/stream", async (req, res) => {
     }
 });
 
+app.get("/stream/:stream", (req, res) => {
+    const { stream } = req.params;
+
+    if (!stream) {
+        return res.status(400).json({ message: "Stream name is required" });
+    }
+
+    const [result] = db.execute("SELECT * FROM streams WHERE stream_name = ?", [stream]);
+
+    if (!result) {
+        return res.status(404).json({ message: "Stream not found" });
+    }
+
+    res.json(result);
+})
+
 app.post("/stream", async (req, res) => {
     const { inputURL, streamName } = req.body;
 
