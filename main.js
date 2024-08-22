@@ -70,6 +70,19 @@ function startFFMpegStream(inputURL, streamName) {
 app.get("/stream", async (req, res) => {
     try {
         const [rows] = await db.query("SELECT * FROM streams");
+        let data = []
+
+        for (let i = 0; i < rows.length; i++) {
+            let obj = {
+                id: rows[i].id,
+                stream_name: rows[i].stream_name,
+                input_url: rows[i].input_url,
+                output_url: rows[i].output_url.replace("/ffmpeg-express", ""),
+                start_time: rows[i].start_time,
+            }
+            data.push(obj)
+        }
+
         res.json(rows);
     } catch (e) {
         console.log(e.message);
