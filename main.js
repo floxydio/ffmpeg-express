@@ -83,7 +83,7 @@ app.get("/stream", async (req, res) => {
             data.push(obj)
         }
 
-        res.json(rows);
+        res.json(data);
     } catch (e) {
         console.log(e.message);
         res.status(500).json({ message: "Error fetching streams" });
